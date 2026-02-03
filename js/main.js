@@ -1,5 +1,8 @@
 console.log("hiya, i'm here (〜￣▽￣)〜");
 
+const key = "i don\'t get the reference :(";
+localStorage.setItem("It\'s a secret to everybody.", key);
+
 const hours = new Date().getHours();
 
 const isMorning = hours >= 4 && hours < 12;
