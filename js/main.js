@@ -1,8 +1,5 @@
 console.log("hiya, i'm here (〜￣▽￣)〜");
 
-const key = "i don\'t get the reference :(";
-localStorage.setItem("It\'s a secret to everybody.", key);
-
 const hours = new Date().getHours();
 
 const isMorning = hours >= 4 && hours < 12;
@@ -88,5 +85,24 @@ const addNewTodo = () => {
 };
 
 addButton.addEventListener('click', addNewTodo);
+
+const getRandomPokemon = async () => {
+    const url = 'https://pokeapi.co/api/v2/pokemon/' + Math.floor(Math.random() * 150);
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const img = document.createElement('img');
+        img.src = data.sprites.front_default;
+        img.alt = `${data.name}`;
+        document.getElementById('pokemon').append(img);
+    } catch (error) {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.error(error, data.name);
+    }
+};
+
+getRandomPokemon();
 
 renderTodos();
